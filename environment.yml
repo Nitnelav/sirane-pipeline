@@ -1,0 +1,16 @@
+name: sirane
+
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - geopandas=0.11.0
+  - openpyxl=3.0.9
+  - py7zr=0.20.0
+
+  - pip:
+    - synpp==1.5.0
+    - matsim-tools
+    - protobuf==3.20

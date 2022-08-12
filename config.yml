@@ -1,0 +1,28 @@
+working_directory: .cache
+
+run:
+  # - data.air_pollution.pdl.cleaned
+  # - data.meteo.cleaned
+  # - data.spatial.iris
+  # - data.bdtopo.cleaned
+  - data.matsim.roads.cleaned
+  - scenario.output
+  # - scenario.roads.processed
+
+config:
+  processes : 14
+
+  regions: []
+  departments: [44]
+
+  air_pollution_source: pdl
+  air_pollution_year: 2021
+
+  meteo_year: 2021
+
+  bd_topo_zone_file: D:/SYMEXPO/sirane/test_rue_ouvertes/ZONE.shp
+
+  matsim_simulation_path: D:\SYMEXPO\matsim-nantes\edgt_20p\nantes_commune\simulation_output
+  matsim_detailed_link_path: D:\SYMEXPO\matsim-nantes\edgt_20p\nantes_commune\simulation_output\detailed_network.csv
+
+  output_path: D:\SYMEXPO\sirane\scenarios\nantes_2021
