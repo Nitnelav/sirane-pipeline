@@ -38,7 +38,7 @@ def execute(context):
 
     count = 0
 
-    with context.progress(total = len(gdf_roads), label = "Processing BD TOPO roads types ...") as progress:
+    with context.progress(total = len(gdf_roads), label = "Processing roads types ...") as progress:
         for index, road in gdf_roads.iterrows():
             progress.update()
 
