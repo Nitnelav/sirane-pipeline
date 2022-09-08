@@ -38,7 +38,7 @@ Date de fin = {parameters["stop"]}
 Fichier de site de dispersion = {parameters["dispersion"]}
 Fichier de reseau = {parameters["network"]}
 Concentration de fond 2D [0/1] = 0
-Fichier de pollution de fond = {parameters["stop"]}
+Fichier de pollution de fond = {parameters["fond"]}
 /-----------------------------------------------------------------------------------------------------/
 / Meteorologie                                                                                        /
 /-----------------------------------------------------------------------------------------------------/
@@ -71,7 +71,7 @@ Espece pour le calcul de l'age des polluants = NO2
 Fichier de sources ponctuelles = EMISSIONS/EMIS_PONCT/Sources_Ponct.dat
 Fichier de sources surfaciques = EMISSIONS/EMIS_SURF/Sources_Surf.dat
 Fichier de sources lineiques = EMISSIONS/EMIS_LIN/Sources_Lin.dat
-Nombre de modulations lineiques = 0
+Nombre de modulations lineiques = 1
 /-----------------------------------------------------------------------------------------------------/
 / Statistiques                                                                                        /
 /-----------------------------------------------------------------------------------------------------/

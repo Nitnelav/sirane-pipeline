@@ -7,5 +7,5 @@ def configure(context):
 
 def execute(context):
     sirane.run(context, [
-        "Donnees.dat"
+        "Donnees.dat", "listing.txt"
     ], catch_output=False, cwd=context.config("output_path"))

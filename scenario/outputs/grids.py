@@ -12,10 +12,12 @@ def execute(context):
     Path(grids_output_path).mkdir(parents=True, exist_ok=True)
 
     df_grids: pd.DataFrame = context.stage("scenario.grids")
-    pd.DataFrame(df_grids.loc["sortie"]).T.to_csv(
+
+    pd.DataFrame(df_grids.loc["sortie"]).T.astype({'Nx': int, 'Ny': int}).to_csv(
         grids_output_path + "info-grid-sortie.dat", sep="\t", index=False
-    ) 
-    pd.DataFrame(df_grids.loc["meteo"]).T.to_csv(
+    )
+    pd.DataFrame(df_grids.loc["meteo"]).T.astype({'Nx': int, 'Ny': int}).to_csv(
         grids_output_path + "info-grid-meteo.dat", sep="\t", index=False
     )
 
+    return

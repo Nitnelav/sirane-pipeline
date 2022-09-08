@@ -14,7 +14,7 @@ def execute(context):
 
     gdf_departments: gpd.GeoDataFrame = context.stage("data.spatial.departments")
     latitude = gdf_departments.to_crs("EPSG:4326").dissolve().iloc[0].geometry.centroid.y
-    
+
     with open(network_output_path + "Site_Disp.dat", 'w') as f:
         f.writelines([
             "/ Caracteristiques du quartier :\n",
@@ -28,7 +28,8 @@ def execute(context):
         ])
 
     gdf_roads: gpd.GeoDataFrame = context.stage("scenario.roads.processed")
-    gdf_roads.to_file(network_output_path + "Reseau_rues-SIRANE.shp")
+    gdf_roads.index.names = ['ID']
+    gdf_roads.to_file(network_output_path + "Reseau_rues-SIRANE.shp", index=True)
 
 
 

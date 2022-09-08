@@ -32,7 +32,6 @@ def execute(context):
 
     df_grids = pd.DataFrame.from_dict(
         grids, orient='index', columns=['Nx', 'Ny', 'xmin', 'xmax', 'ymin', 'ymax']
-    )
+    ).astype({'Nx': int, 'Ny': int})
 
     return df_grids
-    

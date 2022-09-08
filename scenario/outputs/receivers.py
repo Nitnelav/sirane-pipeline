@@ -12,6 +12,7 @@ def execute(context):
     Path(receivers_output_path).mkdir(parents=True, exist_ok=True)
 
     gdf_receivers: gpd.GeoDataFrame = context.stage("data.receivers.selected")
+    gdf_receivers["Fichier"] = "_"
     gdf_receivers.to_csv(
         receivers_output_path + "Recepteurs.dat", sep="\t", index=False
     )

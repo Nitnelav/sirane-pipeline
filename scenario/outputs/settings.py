@@ -8,9 +8,9 @@ def configure(context):
 def execute(context):
     output_path = context.path()
 
-    settings_output_path = output_path + "/INPUT/SETTINGS/"
+    settings_output_path = output_path + "/SETTINGS/"
     Path(settings_output_path).mkdir(parents=True, exist_ok=True)
-    
+
     with open(settings_output_path + "Don_Defaut_FR.dat", 'w', encoding='utf-8') as f:
         f.write("""/******************************************************************************/
 /*                                                                            */
@@ -145,7 +145,7 @@ SRCEPCT_BUFF ; Zone tampon en cellules pour le calcul des sources ponctuelles ; 
 B_RUE_DECOUP ; Decoupage des rues sur la grille retrotrajectoires [0/1] ; OPT ; integer ; 1 ; 0 ; 1
 /------------------------------------------------------------------------------/""")
 
-    with open(settings_output_path + "Statistiques.dat", 'w', encoding='utf-8') as f:
+    with open(settings_output_path + "Site_Defaut_FR.dat", 'w', encoding='utf-8') as f:
         f.write("""/******************************************************************************/
 /*                                                                            */
 /* Modele SIRANE version 2.1 - LMFA/ECL 2017                                  */

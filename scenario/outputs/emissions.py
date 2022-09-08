@@ -22,7 +22,7 @@ def execute(context):
     df_emissions = df_emissions.sort_values(by="link").rename(columns={"link": "Id"})
 
     time_list = np.arange(0, 86400, 3600)
-    
+
     for time in time_list:
         time_string = "%dh" % (time // 3600)
         df = df_emissions.loc[df_emissions["time"] == time]
@@ -33,21 +33,21 @@ def execute(context):
     date_time = datetime(air_pollution_year, 1, 1, 0, 0, 0)
     while date_time.year == air_pollution_year:
         emis_trafic.append({
-            "Date": date_time.strftime('%Y/%m/%d %H:%M'),
-            "Fich_Emis": "EMISSIONS/EMIS_LIN/emis_rues_%dh.dat" % date_time.hour
+            "Date": date_time.strftime('%d/%m/%Y %H:%M'),
+            "Fich_Emis": "EMISSIONS/EMIS_LIN/emis_rues_%dh.dat" % date_time.hour,
         })
         date_time += timedelta(hours=1)
 
     df_emis_trafic = pd.DataFrame.from_dict(emis_trafic)
     df_emis_trafic.to_csv(emissions_lin_output_path + "Evol_Emis_Trafic.dat", sep="\t", index=False)
 
-    
+
     with open(emissions_lin_output_path + "Sources_Lin.dat", 'w') as f:
         f.writelines([
-            "Fich_Evol_Emis Fich_Modul\n",
-            "EMISSIONS/EMIS_LIN/Evol_Emis_Trafic.dat	NULL\n"
+            "Fich_Evol_Emis\tFich_Modul\n",
+            "EMISSIONS/EMIS_LIN/Evol_Emis_Trafic.dat\tNULL\n"
         ])
-        
+
     Path(emissions_output_path + "EMIS_PONCT/").mkdir(parents=True, exist_ok=True)
     with open(emissions_output_path + "EMIS_PONCT/Sources_Ponct.dat", 'w') as f:
         f.writelines([
