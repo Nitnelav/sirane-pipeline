@@ -12,7 +12,7 @@ def execute(context):
     parameters = {
         "input": "INPUT",
         "start": "01/01/%d 00:00:00" % air_pollution_year,
-        "stop": "01/01/%d 00:00:00" % air_pollution_year,
+        "stop": "31/01/%d 00:00:00" % air_pollution_year,
         "dispersion": "RESEAU/Site_Disp.dat",
         "network": "RESEAU/Reseau_rues-SIRANE",
         "fond": "FOND/Concentration_fond.dat",
@@ -75,7 +75,7 @@ Nombre de modulations lineiques = 1
 /-----------------------------------------------------------------------------------------------------/
 / Statistiques                                                                                        /
 /-----------------------------------------------------------------------------------------------------/
-Calcul des statistiques [0/1] = 0
+Calcul des statistiques [0/1] = 1
 Fichier des statistiques = STATISTIQUES/Statistiques.dat
 Comparaison modele-mesures [0/1] = 0
 Fichier des criteres de comparaison = STATISTIQUES/Criteres.dat

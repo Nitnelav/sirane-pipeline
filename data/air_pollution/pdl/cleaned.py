@@ -6,13 +6,15 @@ def configure(context):
 
 def execute(context):
 
+    # TODO : add zero pollution for absent poluttants
+
     df_data: pd.DataFrame = context.stage("data.air_pollution.pdl.raw")
     df_data["influence"] = df_data["influence"].astype("category")
 
     df_data = df_data.loc[df_data["influence"] == "background"]
     df_data = df_data.loc[df_data["statut_valid"] == True]
     df_data = df_data.loc[df_data["code_station (ue)"] == "FR23188"]
-    
+
     df_data["date"] = pd.to_datetime(df_data["date_debut"])
 
     pollutants = df_data['nom_poll'].astype(str).unique()

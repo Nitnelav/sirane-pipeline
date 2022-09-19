@@ -11,15 +11,17 @@ def configure(context):
 def execute(context):
 
     # air_pollution_year = context.config("air_pollution_year")
-    
+
     # timestamp_string = "01/01/%s 00:00:00" % air_pollution_year
     # timestamp_element = datetime.datetime.strptime(timestamp_string,"%d/%m/%Y %H:%M:%S")
     # timestamp_offset = datetime.datetime.timestamp(timestamp_element)
-    
+
     gdf_emissions: gpd.GeoDataFrame = context.stage("data.matsim.emissions.raw")
 
     df_emissions = pd.DataFrame(gdf_emissions)
     df_emissions = df_emissions.drop(columns=["geometry"])
+
+    df_emissions =  df_emissions.rename(columns={"PM": "PM10"})
 
     min_time = df_emissions["time"].min()
     # remove everything beyond min time of the next day

@@ -28,6 +28,8 @@ def execute(context):
     #  intersection buildings
     #  get mean height of intersecting buildings : H
 
+    gdf_roads["ID"] = gdf_roads["link_id"].astype(int)
+
     gdf_roads["TYPE"] = TYPE_OPEN
     gdf_roads["BUFFERED"] = None
     gdf_roads["WG"] = 0.0
@@ -122,6 +124,8 @@ def execute(context):
                 gdf_roads.at[index, "WG"] = width_left
                 gdf_roads.at[index, "WD"] = width_right
 
-    gdf_roads = gdf_roads[["TYPE", "NDDEB", "NDFIN", "WG", "WD", "HG", "HD", "MODUL_EMIS", "geometry"]]
+    gdf_roads = gdf_roads[["ID", "TYPE", "NDDEB", "NDFIN", "WG", "WD", "HG", "HD", "MODUL_EMIS", "geometry"]]
+    gdf_roads = gdf_roads.sort_values(by="ID")
+    gdf_roads = gdf_roads.set_index("ID")
 
     return gdf_roads

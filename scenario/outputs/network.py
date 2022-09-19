@@ -28,7 +28,7 @@ def execute(context):
         ])
 
     gdf_roads: gpd.GeoDataFrame = context.stage("scenario.roads.processed")
-    gdf_roads.index.names = ['ID']
+
     gdf_roads.to_file(network_output_path + "Reseau_rues-SIRANE.shp", index=True)
 
 
