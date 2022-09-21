@@ -6,11 +6,14 @@ from pathlib import Path
 
 def configure(context):
     context.stage("data.matsim.emissions.cleaned")
+    context.stage("scenario.roads.processed")
     context.config("air_pollution_year")
+    context.config("pollutants", [])
 
 def execute(context):
     output_path = context.path()
     air_pollution_year = context.config("air_pollution_year")
+    required_pollutants = context.config("pollutants")
 
     emissions_output_path = output_path + "/INPUT/EMISSIONS/"
     Path(emissions_output_path).mkdir(parents=True, exist_ok=True)
@@ -18,7 +21,10 @@ def execute(context):
     emissions_lin_output_path = output_path + "/INPUT/EMISSIONS/EMIS_LIN/"
     Path(emissions_lin_output_path).mkdir(parents=True, exist_ok=True)
 
+    gdf_roads: gpd.GeoDataFrame = context.stage("scenario.roads.processed")
+
     df_emissions: pd.DataFrame = context.stage("data.matsim.emissions.cleaned")
+
     df_emissions = df_emissions.sort_values(by="link").rename(columns={"link": "Id"})
 
     time_list = np.arange(0, 86400, 3600)
@@ -26,8 +32,12 @@ def execute(context):
     for time in time_list:
         time_string = "%dh" % (time // 3600)
         df = df_emissions.loc[df_emissions["time"] == time]
-        df.drop(columns=["time"])
-        df.to_csv(emissions_lin_output_path + "emis_rues_%s.dat" % time_string, sep="\t", index=False)
+        df = df.drop(columns=["time"])
+        df = df.set_index("Id")
+        df.index = df.index.astype(int)
+        df = df.reindex(gdf_roads.index.rename("Id"), fill_value=0.0)
+        # df = df[required_pollutants]
+        df.to_csv(emissions_lin_output_path + "emis_rues_%s.dat" % time_string, sep="\t", index=True)
 
     emis_trafic = []
     mod_trafic = []

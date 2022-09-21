@@ -3,10 +3,12 @@ import geopandas as gpd
 
 def configure(context):
     context.stage("data.air_pollution.pdl.raw")
+    context.config("pollutants", [])
 
 def execute(context):
 
     # TODO : add zero pollution for absent poluttants
+    required_pollutants = context.config("pollutants")
 
     df_data: pd.DataFrame = context.stage("data.air_pollution.pdl.raw")
     df_data["influence"] = df_data["influence"].astype("category")
@@ -17,9 +19,10 @@ def execute(context):
 
     df_data["date"] = pd.to_datetime(df_data["date_debut"])
 
-    pollutants = df_data['nom_poll'].astype(str).unique()
+    pollutants = list(df_data['nom_poll'].astype(str).unique())
+    pollutants = list(set(pollutants + required_pollutants))
     for poll in pollutants:
-        df_data[poll] = None
+        df_data[poll] = 0.0
 
     for i, row in df_data.iterrows():
         df_data.at[i, row["nom_poll"]] = row["valeur"]

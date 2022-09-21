@@ -6,6 +6,8 @@ import datetime
 
 def configure(context):
     context.stage("data.matsim.emissions.raw")
+    context.config("pollutants", [])
+
     # context.config("air_pollution_year")
 
 def execute(context):
@@ -16,12 +18,19 @@ def execute(context):
     # timestamp_element = datetime.datetime.strptime(timestamp_string,"%d/%m/%Y %H:%M:%S")
     # timestamp_offset = datetime.datetime.timestamp(timestamp_element)
 
+    required_pollutants = context.config("pollutants")
+
     gdf_emissions: gpd.GeoDataFrame = context.stage("data.matsim.emissions.raw")
 
     df_emissions = pd.DataFrame(gdf_emissions)
     df_emissions = df_emissions.drop(columns=["geometry"])
 
+    # fix pollutants column names
     df_emissions =  df_emissions.rename(columns={"PM": "PM10"})
+
+    # for poll in required_pollutants:
+    #     if poll not in df_emissions:
+    #         df_emissions[poll] = 0.0
 
     min_time = df_emissions["time"].min()
     # remove everything beyond min time of the next day

@@ -57,12 +57,12 @@ Vitesse du vent minimale [m/s] = 1.0
 Fichier des especes = {parameters["especes"]}
 Fichier de groupes de sources = {parameters["srcegroup"]}
 Emissions de NO en equivalent NO2 [0/1] = 1
-Activation du modele chimique NO-NO2-O3 [0/1/2] = 2
+Activation du modele chimique NO-NO2-O3 [0/1/2] = 0
 / Description du parametre Activation du modele chimique NO-NO2-O3
 / La valeur 0 correspond a : pas de modele chimique active
 / La valeur 1 correspond a : activation du modele photostationnaire
 / La valeur 2 correspond a : activation du nouveau modele chimie
-Calcul de l'age des polluants [0/1] = 1
+Calcul de l'age des polluants [0/1] = 0
 Ecriture de l'age des polluants [0/1] = 0
 Espece pour le calcul de l'age des polluants = NO2
 /-----------------------------------------------------------------------------------------------------/
@@ -89,7 +89,7 @@ Fichier de position des recepteurs ponctuels = RECEPTEURS/Recepteurs.dat
 / 2- Champs de concentration /
 /---------------------------/
 Fichier de description de la grille de sortie = GRILLES/info-grid-sortie.dat
-Calcul sur la grille [0/1] = 1
+Calcul sur la grille [0/1] = 0
 Format du fichier de champ de concentration [0/1/2/3/4] = 3
 / 3- Depot                   /
 /---------------------------/
