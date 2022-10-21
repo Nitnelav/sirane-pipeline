@@ -16,7 +16,7 @@ run:
 config:
   processes : 14
 
-  pollutants: ["NOx", "PM10"]
+  pollutants: ["PM10"]
 
   sirane_binary: /home/valoo/Projects/IFSTTAR/_SIRANE/SIRANE-Univ_G.Eiffel/sirane-rev146-Linux-UnivGEiffeil
 

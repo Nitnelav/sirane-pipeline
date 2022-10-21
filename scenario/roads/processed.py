@@ -32,10 +32,10 @@ def execute(context):
 
     gdf_roads["TYPE"] = TYPE_OPEN
     gdf_roads["BUFFERED"] = None
-    gdf_roads["WG"] = 0.0
-    gdf_roads["WD"] = 0.0
-    gdf_roads["HG"] = 0.0
-    gdf_roads["HD"] = 0.0
+    gdf_roads["WG"] = 10.0
+    gdf_roads["WD"] = 10.0
+    gdf_roads["HG"] = 10.0
+    gdf_roads["HD"] = 10.0
     gdf_roads["WG"] = gdf_roads["WG"].astype(float)
     gdf_roads["WD"] = gdf_roads["WD"].astype(float)
     gdf_roads["HG"] = gdf_roads["HG"].astype(float)
@@ -50,7 +50,7 @@ def execute(context):
     with context.progress(total = len(gdf_roads), label = "Processing roads types ...") as progress:
         for index, road in gdf_roads.iterrows():
             progress.update()
-
+            continue
             # count += 1
             # if count >= 100:
             #     print("ok")
@@ -62,16 +62,16 @@ def execute(context):
             total_sum_volume = 0
             total_sum_surface = 0
 
-            road_geom: Polygon = road['geometry']
+            road_geom: Polygon = road['detailed_geometry']
             gdf_buildings_filtered = gdf_buildings.loc[gdf_buildings.intersects(road_geom.buffer(DISTANCE_MAX, cap_style=2))]
 
             if len(gdf_buildings_filtered) == 0:
                 continue
 
-            height_left = 0.0
-            height_right = 0.0
-            width_left = 0.0
-            width_right = 0.0
+            height_left = 10.0
+            height_right = 10.0
+            width_left = 10.0
+            width_right = 10.0
 
             for orientation in [LEFT, RIGHT]:
                 for buffer_distance in range(DISTANCE_STEPS, DISTANCE_MAX + DISTANCE_STEPS, DISTANCE_STEPS):

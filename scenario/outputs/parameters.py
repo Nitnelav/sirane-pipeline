@@ -11,8 +11,8 @@ def execute(context):
 
     parameters = {
         "input": "INPUT",
-        "start": "01/01/%d 00:00:00" % air_pollution_year,
-        "stop": "31/01/%d 00:00:00" % air_pollution_year,
+        "start": "12/04/%d 09:00:00" % air_pollution_year,
+        "stop": "12/04/%d 11:00:00" % air_pollution_year,
         "dispersion": "RESEAU/Site_Disp.dat",
         "network": "RESEAU/Reseau_rues-SIRANE",
         "fond": "FOND/Concentration_fond.dat",
@@ -56,7 +56,7 @@ Vitesse du vent minimale [m/s] = 1.0
 /-----------------------------------------------------------------------------------------------------/
 Fichier des especes = {parameters["especes"]}
 Fichier de groupes de sources = {parameters["srcegroup"]}
-Emissions de NO en equivalent NO2 [0/1] = 1
+Emissions de NO en equivalent NO2 [0/1] = 0
 Activation du modele chimique NO-NO2-O3 [0/1/2] = 0
 / Description du parametre Activation du modele chimique NO-NO2-O3
 / La valeur 0 correspond a : pas de modele chimique active
@@ -89,7 +89,7 @@ Fichier de position des recepteurs ponctuels = RECEPTEURS/Recepteurs.dat
 / 2- Champs de concentration /
 /---------------------------/
 Fichier de description de la grille de sortie = GRILLES/info-grid-sortie.dat
-Calcul sur la grille [0/1] = 0
+Calcul sur la grille [0/1] = 1
 Format du fichier de champ de concentration [0/1/2/3/4] = 3
 / 3- Depot                   /
 /---------------------------/
@@ -98,9 +98,9 @@ Fichier du depot = DEPOT/Depot.dat
 /-----------------------------------------------------------------------------------------------------/
 / Options de simulation                                                                               /
 /-----------------------------------------------------------------------------------------------------/
-Nombre maximum de threads utilises = 6
+Nombre maximum de threads utilises = 14
 Ratio entre pas meteo et pas retrotrajectoires = 2
 Zone tampon en cellules pour le calcul des retrotrajectoires = 3"""
-
+ 
     with open(output_path + "/Donnees.dat", 'w', encoding='utf-8') as f:
         f.write(data)

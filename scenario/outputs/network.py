@@ -1,5 +1,6 @@
 import pandas as pd
 import geopandas as gpd
+from shapely.geometry import LineString
 from pathlib import Path
 
 def configure(context):
@@ -29,7 +30,27 @@ def execute(context):
 
     gdf_roads: gpd.GeoDataFrame = context.stage("scenario.roads.processed")
 
+    gdf_roads["NDDEB"] = gdf_roads["NDDEB"].astype(int)
+    gdf_roads["NDFIN"] = gdf_roads["NDFIN"].astype(int)
+
+    unique_deb = gdf_roads["NDDEB"].unique()
+    # unique_deb.sort()
+    replace_nodes = {}
+    for i in range(len(unique_deb)):
+        replace_nodes[unique_deb[i]] = i
+
+    gdf_roads = gdf_roads.replace({"NDDEB": replace_nodes, "NDFIN": replace_nodes})
+
+    gdf_roads = gdf_roads.reset_index(drop=True)
+    gdf_roads.index = gdf_roads.index.rename("ID")
+
+    # gdf_roads["points"] = gdf_roads["geometry"].apply(lambda g : nb_points(g))
+    # gdf_roads["length"] = gdf_roads["geometry"].apply(lambda g : length(g))
     gdf_roads.to_file(network_output_path + "Reseau_rues-SIRANE.shp", index=True)
 
 
+def nb_points(g: LineString):
+    return len(g.coords)
 
+def length(g: LineString):
+    return g.length

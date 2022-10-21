@@ -21,7 +21,8 @@ def execute(context):
     with open(stats_output_path + "Statistiques.dat", 'w') as f:
         f.writelines([
             "Type	Espece	Calcul	Grille	Recept	Recept_Mes	Rue	Valeur\n",
-            "Moy	*	1	1	1	0	0	-9999"
+            "Moy	PM10	1	1	1	0	0	-9999\n",
+            # "Moy	NOx	1	1	1	0	0	-9999\n",
         ])
 
 

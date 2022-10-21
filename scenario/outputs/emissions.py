@@ -36,8 +36,11 @@ def execute(context):
         df = df.set_index("Id")
         df.index = df.index.astype(int)
         df = df.reindex(gdf_roads.index.rename("Id"), fill_value=0.0)
-        # df = df[required_pollutants]
-        df.to_csv(emissions_lin_output_path + "emis_rues_%s.dat" % time_string, sep="\t", index=True)
+        df = df.reset_index(drop=True)
+        df.index = df.index.rename("Id")
+
+        df = df[required_pollutants]
+        df.to_csv(emissions_lin_output_path + "emis_rues_%s.dat" % time_string, sep="\t", float_format='%.6f', index=True)
 
     emis_trafic = []
     mod_trafic = []

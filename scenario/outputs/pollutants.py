@@ -15,14 +15,14 @@ def execute(context):
     with open(pollutants_output_path + "Especes.dat", 'w') as f:
         lines = [
             "Id	Flag	Mmolaire	Vdepot	CoeffLessivage	DiamPart	RhoPart\n",
-            "NO2	1	46.0	1.0	1.0	0.0	0.0\n",
-            "NO	1	30.0	1.0	1.0	0.0	0.0\n",
-            "NOx	1	35.0	1.0	1.0	0.0	0.0\n",
-            "O3	1	48.0	1.0	1.0	0.0	0.0\n",
+            # "NO2	0	46.0	1.0	1.0	0.0	0.0\n",
+            # "NO	0	30.0	1.0	1.0	0.0	0.0\n",
+            # "NOx	1	35.0	1.0	1.0	0.0	0.0\n",
+            # "O3	0	48.0	1.0	1.0	0.0	0.0\n",
             "PM10	1	100.0	1.0	1.0	1.0E-5	1000.0\n",
-            "PM25	0	100.0	1.0	1.0	2.5E-6	1000.0\n",
-            "CO	0	28.0	1.0	1.0	0.0	0.0\n",
-            "C6H6	0	78.0	1.0	0.0	0.0	0.0\n",
+            # "PM25	0	100.0	1.0	1.0	2.5E-6	1000.0\n",
+            # "CO	0	28.0	1.0	1.0	0.0	0.0\n",
+            # "C6H6	0	78.0	1.0	0.0	0.0	0.0\n",
         ]
         f.writelines(lines)
 

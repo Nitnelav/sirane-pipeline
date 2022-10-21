@@ -20,9 +20,10 @@ def execute(context):
         gdf_roads = pd.merge(gdf_roads, df_details, on="link_id", how="left")
         gdf_roads["detailed_geometry"] = gdf_roads["detailed_geometry"].apply(lambda g: fix_wtk(g))
         gdf_roads["detailed_geometry"] = gdf_roads["detailed_geometry"].fillna(gdf_roads["geometry"].to_wkt())
-        gdf_roads["geometry"] = gpd.GeoSeries.from_wkt(gdf_roads["detailed_geometry"])
+        gdf_roads["detailed_geometry"] = gpd.GeoSeries.from_wkt(gdf_roads["detailed_geometry"])
 
     gdf_roads = gdf_roads.loc[gdf_roads["modes"].str.contains("car")]
+    gdf_roads = gdf_roads.loc[gdf_roads["from_node"] != gdf_roads["to_node"]]
 
     return gdf_roads
 
