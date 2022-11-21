@@ -9,16 +9,18 @@ run:
   # - data.matsim.emissions.cleaned
   # - data.receivers.raw
   # - scenario.output
-  - scenario.run
+  # - scenario.run
   # - scenario.grid
   # - scenario.roads.processed
+  - urban.process.run
 
 config:
   processes : 14
 
   pollutants: ["PM10"]
 
-  sirane_binary: /home/valoo/Projects/IFSTTAR/_SIRANE/SIRANE-Univ_G.Eiffel/sirane-rev146-Linux-UnivGEiffeil
+  sirane_binary: D:/SYMEXPO/sirane/SIRANE-Univ_G.Eiffel/sirane-rev146-Win64-UnivGEiffeil.exe
+  urban_binary: D:/SYMEXPO/sirane/URBAN/URBAN.exe
 
   regions: []
   departments: [44]
@@ -28,12 +30,12 @@ config:
 
   meteo_year: 2021
 
-  bd_topo_zone_file: /home/valoo/Projects/IFSTTAR/_SIRANE/test_rue_ouvertes/ZONE.shp
-
+  zone_file: D:/SYMEXPO/sirane/test_rue_ouvertes/ZONE.shp
+  
   receivers_source: matsim
-  receivers_file: /home/valoo/Projects/IFSTTAR/_SIRANE/test_rue_ouvertes/RECEIVERS.shp
+  receivers_file: D:/SYMEXPO/sirane/test_rue_ouvertes/RECEIVERS.shp
 
-  matsim_simulation_path: /home/valoo/Projects/IFSTTAR/_SIRANE/matsim_nantes_edgt_1p/nantes_commune/simulation_output
-  matsim_detailed_link_path: /home/valoo/Projects/IFSTTAR/_SIRANE/matsim_nantes_edgt_1p/nantes_detailed_network.csv
+  matsim_simulation_path: D:/SYMEXPO/matsim-nantes/edgt_1p/nantes_commune/simulation_output
+  matsim_detailed_link_path: D:/SYMEXPO/matsim-nantes/edgt_1p/nantes_detailed_network.csv
 
-  output_path: /home/valoo/Projects/IFSTTAR/_SIRANE/sirane_nantes_2021
+  output_path: D:/SYMEXPO/sirane/scenarios/nantes_2021
